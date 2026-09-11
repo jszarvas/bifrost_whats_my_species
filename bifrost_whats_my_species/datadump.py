@@ -118,6 +118,7 @@ def species_math(species_detection: Category, results: Dict, bracken_file: str) 
     species_detection["summary"]["percent_unclassified"] = 1.0 - total_fraction
 
     species_detection["summary"]["detected_species"] = name_1
+    species_detection["summary"]["species"] = name_1
 
 
 def set_sample_species(species_detection: Category, sample: Sample) -> None:
