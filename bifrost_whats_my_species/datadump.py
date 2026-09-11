@@ -120,16 +120,15 @@ def species_math(species_detection: Category, results: Dict, bracken_file: str) 
     species_detection["summary"]["detected_species"] = name_1
     species_detection["summary"]["species"] = name_1
 
-
-def set_sample_species(species_detection: Category, sample: Sample) -> None:
+def set_provided_species(species_detection: Category, sample: Sample) -> None:
     sample_info = sample.get_category("sample_info")
     if (
         sample_info is not None
         and sample_info["summary"].get("provided_species", None) is not None
     ):
-        species_detection["summary"]["species"] = sample_info["summary"]["provided_species"]
+        species_detection["summary"]["provided_species"] = sample_info["summary"]["provided_species"]
     else:
-        species_detection["summary"]["species"] = species_detection["summary"].get(
+        species_detection["summary"]["provided_species"] = species_detection["summary"].get(
             "detected_species", None
         )
 
@@ -162,7 +161,7 @@ def datadump(samplecomponent_id: str):
 
     extract_bracken_sorted(species_detection, samplecomponent["results"], bracken_file)
     species_math(species_detection, samplecomponent["results"], bracken_file)
-    set_sample_species(species_detection, sample)
+    set_provided_species(species_detection, sample)
 
     samplecomponent.set_category(species_detection)
     sample.set_category(species_detection)
