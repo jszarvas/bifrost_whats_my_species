@@ -127,10 +127,6 @@ def set_provided_species(species_detection: Category, sample: Sample) -> None:
         and sample_info["summary"].get("provided_species", None) is not None
     ):
         species_detection["summary"]["provided_species"] = sample_info["summary"]["provided_species"]
-    else:
-        species_detection["summary"]["provided_species"] = species_detection["summary"].get(
-            "detected_species", None
-        )
 
 
 ###############################
